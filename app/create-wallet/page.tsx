@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 // import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Copy, Eye, EyeOff, ArrowLeft } from 'lucide-react'
+import { Copy, Eye, EyeOff, ArrowLeft, ShieldAlert } from 'lucide-react'
 
 import { ethers } from "ethers";
 
@@ -69,8 +69,8 @@ const Createpage = () => {
       setPasswordError('Passwords do not match')
       return
     }
-    if (password.length < 8) {
-      setPasswordError('Password must be at least 8 characters')
+    if (password.length < 6) {
+      setPasswordError('Password must be at least 6 characters')
       return
     }
 
@@ -165,9 +165,9 @@ const Createpage = () => {
                   </div>
 
                   {/* Warning Alert */}
-                  <div className="bg-red-500 border-red p-3 rounded-lg mt-2 mb-2">
+                  <div className="bg-red-700 border-red p-3 rounded-lg mt-2 mb-2">
                     <h1 className=" text-sm">
-                      Never share your recovery phrase. Anyone with these words can access your funds.
+                     <span className="flex items-center gap-2"><ShieldAlert size={20} className="" /> Warning:</span> Never share your recovery phrase. Anyone with these words can access your funds.
                     </h1>
                   </div>
 
@@ -194,6 +194,10 @@ const Createpage = () => {
           </div>
         ) : (
           <div>
+
+
+
+
             {/* Set Password Header */}
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-foreground mb-2">Create Password</h1>
@@ -210,7 +214,7 @@ const Createpage = () => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="At least 8 characters"
+                  placeholder="At least 6 characters"
                   className="w-full bg-input border border-border rounded-lg px-4 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
@@ -235,7 +239,7 @@ const Createpage = () => {
               <button
                 onClick={handleCreateWallet}
                 
-                className="w-full bg-primary hover:bg-blue-600 text-primary-foreground"
+                className="w-full bg-blue-600 p-2 rounded-xl hover:bg-blue-800 text-primary-foreground"
               >
                 Create Wallet
               </button>
@@ -243,7 +247,7 @@ const Createpage = () => {
               <button
                 onClick={() => setStep('display')}
                 
-                className="w-full border-border text-foreground hover:bg-card"
+                className="w-full hover:bg-red-600 hover:p-2 rounded-xl  border-border text-foreground hover:bg-card"
               >
                 Back
               </button>
