@@ -20,6 +20,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
     WalletContextType["transactions"]
   >([]);
   const [transactionsLoading, setTransactionsLoading] = useState(false);
+  const [signer, setSigner] = useState<ethers.Signer | null>(null);
 
   const initializeWalletCreation = async (): Promise<string> => {
     try {
@@ -138,12 +139,28 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
     }
   }, [isConnected, address, currentNetwork, refreshTransactions]);
 
+  // Create signer when privateKey or network changes
+  useEffect(() => {
+    if (privateKey && isConnected) {
+      try {
+        const provider = new ethers.JsonRpcProvider(currentNetwork.rpcUrl);
+        const newSigner = new ethers.Wallet(privateKey, provider);
+        setSigner(newSigner);
+      } catch (error) {
+        console.error("Error creating signer:", error);
+        setSigner(null);
+      }
+    } else {
+      setSigner(null);
+    }
+  }, [privateKey, isConnected, currentNetwork]);
+
   const value: WalletContextType = {
     address,
     privateKey,
     mnemonic,
     isConnected,
-    signer: null,
+    signer,
 
     currentNetwork,
     availableNetworks,
