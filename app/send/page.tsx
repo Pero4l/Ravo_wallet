@@ -93,14 +93,16 @@ export default function SendPage() {
       setAmount("");
       alert("Transaction sent successfully!");
 
-      setTimeout(() => {
-        router.push("/dashboard");
-      }, 2000);
+    
     } catch (err) {
       console.error("Transaction failed:", err);
       alert("Transaction failed. Check console for details.");
     } finally {
       setSending(false);
+      
+        setTimeout(() => {
+        router.push("/dashboard");
+      }, 2000);
     }
   };
 
