@@ -14,15 +14,15 @@ export default function Home() {
         </div>
 
          {/* Card Container */}
-        <div className="bg-[#161b22] border border-gray-600 rounded-lg p-5 shadow-lg mx-3 mt-1">
+        <div className="bg-[#161b22] border border-gray-600 rounded-lg p-10 shadow-lg mx-4 mt-1">
           <p className="text-center text-foreground mb-8 ">
             Get started with your secure Web3 wallet in seconds.
           </p>
 
           {/* Buttons */}
-          <div className="space-y-3 mb-8">
+          <div className="space-y-5 mb-8">
             <Link href="/create-wallet" className="block">
-              <button className="w-full bg-blue-600 hover:bg-blue-700 p-3 rounded-xl text-primary-foreground">
+              <button className="w-full bg-blue-600 hover:bg-blue-700 p-2 rounded-xl text-primary-foreground">
                 Create New Wallet
               </button>
             </Link>
