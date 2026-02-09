@@ -18,7 +18,7 @@ export default function ImportWalletPage() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [errors, setErrors] = useState<{ input?: string; password?: string; confirmPassword?: string }>({})
 
-  console.log('WalletContext:', context) // Debugging log   
+  // console.log('WalletContext:', context) // Debugging log   
 
   if (!context) {
     return <div className='text-4xl text-center justify-center pt-96'>Loading...</div>
