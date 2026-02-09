@@ -8,9 +8,11 @@ import Link from 'next/link'
 import { Copy, Eye, EyeOff, ArrowLeft, ShieldAlert } from 'lucide-react'
 
 import { ethers } from "ethers";
+import { WalletContext } from '@/lib/wallet-context'
 
 const Createpage = () => {
       const router = useRouter()
+      const context = useContext(WalletContext)
   const [showPhrase, setShowPhrase] = useState(false)
   const [copied, setCopied] = useState(false)
   const [tempMnemonic, setTempMnemonic] = useState<string | null>(null)
@@ -25,16 +27,11 @@ const Createpage = () => {
     const generateMnemonic = async () => {
       try {
         setLoading(true)
-        const wallet = ethers.Wallet.createRandom();
-
-        const data = {
-    address: wallet.address,
-    privateKey: wallet.privateKey,
-    mnemonic: wallet.mnemonic?.phrase,
-  };
-        if (data.mnemonic) {
-          setTempMnemonic(data.mnemonic)
+        if (!context?.initializeWalletCreation) {
+          throw new Error('Provider not available')
         }
+        const mnemonic = await context.initializeWalletCreation()
+        setTempMnemonic(mnemonic)
       } catch (error) {
         console.error('Error generating wallet:', error)
         setPasswordError('Failed to generate wallet')
@@ -48,9 +45,9 @@ const Createpage = () => {
  
 
 
-//   if (!context) {
-//     return <div>Loading...</div>
-//   }
+  if (!context) {
+    return <div>Loading...</div>
+  }
 
   const handleCopy = () => {
     if (tempMnemonic) {
@@ -74,12 +71,12 @@ const Createpage = () => {
       return
     }
 
-    // try {
-    //   await context.createWallet(password)
-    //   router.push('/dashboard')
-    // } catch (error) {
-    //   setPasswordError('Failed to create wallet')
-    // }
+    try {
+      await context.createWallet(password)
+      router.push('/dashboard')
+    } catch (error) {
+      setPasswordError('Failed to create wallet')
+    }
   }
 
   const phraseArray = tempMnemonic?.split(' ') || []
@@ -232,7 +229,7 @@ const Createpage = () => {
             {/*  */}
               {passwordError && (
                 <div className="bg-destructive/10 border-destructive/30">
-                  <h1 className="text-destructive text-sm">{passwordError}</h1>
+                  <h1 className="text-destructive text-sm text-red-500">{passwordError}</h1>
                 </div>
               )}
 

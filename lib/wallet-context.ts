@@ -42,6 +42,7 @@ export interface WalletContextType {
   logout: () => void;
   refreshBalance: () => Promise<void>;
   refreshTransactions: () => Promise<void>;
+  initializeWalletCreation?: () => Promise<string>;
 
   // Settings
   settings: {

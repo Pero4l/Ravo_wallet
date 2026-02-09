@@ -3,16 +3,6 @@
 import { useEffect, useState, useContext } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Button } from '@/components/ui/button'
-import { WalletHeader } from '@/components/wallet-header'
-import { Card } from '@/components/ui/card'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import {
   Send,
   TrendingUp,
@@ -22,13 +12,22 @@ import {
   ExternalLink,
 } from 'lucide-react'
 import { WalletContext } from '@/lib/wallet-context'
+import { WalletHeader } from '@/app/components/wallet-header'
 
 export default function DashboardPage() {
   const router = useRouter()
   const context = useContext(WalletContext)
-  const [copied, setCopied] = useState(false)
-  const [balanceUSD, setBalanceUSD] = useState('0')
 
+  const [copied, setCopied] = useState(false)
+
+  // ✅ ALWAYS call hooks first
+  useEffect(() => {
+    if (!context?.isConnected) {
+      router.push('/')
+    }
+  }, [context?.isConnected, router])
+
+  // ✅ AFTER hooks, it's safe to return early
   if (!context) {
     return <div>Loading...</div>
   }
@@ -47,19 +46,6 @@ export default function DashboardPage() {
     availableNetworks,
   } = context
 
-  // Redirect if not connected
-  useEffect(() => {
-    if (!isConnected) {
-      router.push('/')
-    }
-  }, [isConnected, router])
-
-  // Mock ETH to USD conversion (replace with real API in production)
-  useEffect(() => {
-    const ethPrice = 2450
-    setBalanceUSD((parseFloat(balance || '0') * ethPrice).toFixed(2))
-  }, [balance])
-
   if (!isConnected || !address || !currentNetwork) {
     return null
   }
@@ -68,15 +54,9 @@ export default function DashboardPage() {
   const recentTransactions = transactions?.slice(0, 5) ?? []
 
   const handleCopy = () => {
-    if (address) {
-      try {
-        navigator.clipboard.writeText(address)
-        setCopied(true)
-        setTimeout(() => setCopied(false), 2000)
-      } catch (err) {
-        console.error('Failed to copy address:', err)
-      }
-    }
+    navigator.clipboard.writeText(address)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
   return (
@@ -91,24 +71,21 @@ export default function DashboardPage() {
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
         {/* Network Selector */}
         <div className="flex gap-2">
-          <Select
+          <select
+          className="border-border text-white px-3 py-1 rounded-lg text-sm"
             value={currentNetwork.id}
-            onValueChange={(id) => changeNetwork(id)}
+            onChange={(e) => changeNetwork(e.target.value)}
           >
-            <SelectTrigger className="bg-card border-border text-foreground">
-              <SelectValue placeholder="Select Network" />
-            </SelectTrigger>
-            <SelectContent className="bg-card border-border text-foreground">
-              {availableNetworks?.map((net) => (
-                <SelectItem key={net.id} value={net.id}>
-                  {net.icon || null} {net.name}
-                </SelectItem>
+            <option value="" disabled>Select Network</option>
+            {availableNetworks?.map((net) => (
+              <option key={net.id} value={net.id}>
+                {net.icon || null} {net.name}
+                </option>
               ))}
-            </SelectContent>
-          </Select>
-          <Button
-            variant="outline"
-            size="sm"
+            </select>
+          <button
+            
+         
             onClick={() => {
               refreshBalance()
               refreshTransactions()
@@ -120,11 +97,11 @@ export default function DashboardPage() {
               size={16}
               className={balanceLoading ? 'animate-spin' : ''}
             />
-          </Button>
+          </button>
         </div>
 
         {/* Balance Display */}
-        <Card className="bg-gradient-to-br from-card to-card/50 border-border p-8">
+        <div className="bg-gradient-to-br from-card to-card/50 border-border p-8">
           <div className="space-y-4">
             <div>
               <p className="text-muted-foreground text-sm mb-2">Total Balance</p>
@@ -136,26 +113,26 @@ export default function DashboardPage() {
                   {currentNetwork.currency || 'ETH'}
                 </span>
               </div>
-              {/* <p className="text-muted-foreground text-sm mt-2">
-                ≈ ${balanceUSD}
-              </p> */}
+              <p className="text-muted-foreground text-sm mt-2">
+                ≈ ${(parseFloat(context.balance || '0') * 2450).toFixed(2)}
+              </p>
             </div>
 
             {/* Action Buttons */}
             <div className="grid grid-cols-2 gap-3 pt-4">
               <Link href="/send">
-                <Button className="w-full bg-primary hover:bg-blue-600 text-primary-foreground">
+                <button className="w-full bg-primary hover:bg-blue-600 text-primary-foreground">
                   <Send size={16} className="mr-2" />
                   Send
-                </Button>
+                </button>
               </Link>
               <Link href="/receive">
-                <Button
-                  variant="outline"
+                <button
+                  
                   className="w-full border-border text-foreground hover:bg-card bg-transparent"
                 >
                   Receive
-                </Button>
+                </button>
               </Link>
             </div>
 
@@ -179,36 +156,36 @@ export default function DashboardPage() {
               )}
             </div>
           </div>
-        </Card>
+        </div>
 
         {/* Recent Transactions */}
         <div>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold">Recent Transactions</h2>
             <Link href="/transactions">
-              <Button variant="ghost" size="sm" className="text-accent">
+              <button className="text-accent hover:text-accent/80">
                 View All
-              </Button>
+              </button>
             </Link>
           </div>
 
           {transactionsLoading ? (
-            <Card className="bg-card border-border p-4">
+            <div className="bg-card border-border p-4">
               <p className="text-muted-foreground text-center py-8">
                 Loading transactions...
               </p>
-            </Card>
+            </div>
           ) : recentTransactions.length === 0 ? (
-            <Card className="bg-card border-border p-4">
+            <div className="bg-card border-border p-4">
               <p className="text-muted-foreground text-center py-8">
                 No transactions yet
               </p>
-            </Card>
+            </div>
           ) : (
             <div className="space-y-2">
               {recentTransactions.map((tx) => (
                 <Link key={tx.hash} href={`/transactions/${tx.hash}`}>
-                  <Card className="bg-card border-border p-4 hover:border-primary transition cursor-pointer">
+                  <div className="bg-card border-border p-4 hover:border-primary transition cursor-pointer">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div
@@ -247,7 +224,7 @@ export default function DashboardPage() {
                         />
                       </div>
                     </div>
-                  </Card>
+                  </div>
                 </Link>
               ))}
             </div>
