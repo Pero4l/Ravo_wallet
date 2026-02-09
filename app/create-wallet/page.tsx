@@ -7,7 +7,7 @@ import Link from 'next/link'
 // import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Copy, Eye, EyeOff, ArrowLeft, ShieldAlert } from 'lucide-react'
 
-import { ethers } from "ethers";
+// import { ethers } from "ethers";
 import { WalletContext } from '@/lib/wallet-context'
 
 const Createpage = () => {
@@ -103,7 +103,7 @@ const Createpage = () => {
             </div>
 
             {/* Card */}
-            <div className="bg-card border border-border rounded-lg p-8 shadow-lg space-y-6">
+            <div className="bg-card border border-gray-600 rounded-lg p-8 shadow-lg space-y-6">
               {loading ? (
                 <div className="flex flex-col items-center justify-center py-12">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
@@ -120,26 +120,26 @@ const Createpage = () => {
                     >
                       {showPhrase ? (
                         <>
-                          <EyeOff size={18} />
-                          <span className="text-sm">Hide</span>
+                          <EyeOff className=" text-blue-400" size={18} />
+                          <span className="text-sm text-blue-400">Hide</span>
                         </>
                       ) : (
                         <>
-                          <Eye size={18} />
-                          <span className="text-sm">Show</span>
+                          <Eye className=" text-blue-400" size={18} />
+                          <span className="text-sm text-blue-400">Show</span>
                         </>
                       )}
                     </button>
                   </div>
 
                   {/* Recovery Phrase Grid */}
-                  <div className="bg-background rounded-lg p-6 border border-border">
+                  <div className="bg-[#0e1116] rounded-lg p-6 border border-gray-600">
                     {showPhrase ? (
                       <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
                         {phraseArray.map((word, index) => (
                           <div
                             key={index}
-                            className="bg-card border border-border rounded px-3 py-2 text-center"
+                            className="bg-[#161b22] border border-gray-600 rounded px-3 py-2 text-center"
                           >
                             <div className="text-xs text-muted-foreground mb-1">{index + 1}</div>
                             <div className="text-sm font-medium text-foreground">{word}</div>
@@ -151,7 +151,7 @@ const Createpage = () => {
                         {Array(12).fill(null).map((_, index) => (
                           <div
                             key={index}
-                            className="bg-card border border-border rounded px-3 py-2 text-center"
+                            className="bg-[#161b22] border border-gray-600 rounded px-3 py-2 text-center"
                           >
                             <div className="text-xs text-muted-foreground mb-1">{index + 1}</div>
                             <div className="h-5 bg-input rounded" />
@@ -171,7 +171,7 @@ const Createpage = () => {
                   {/* Copy Button */}
                   <button
                     onClick={handleCopy}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2 border border-border rounded-lg text-foreground hover:bg-input transition"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-2 border border-gray-600 rounded-lg text-foreground hover:bg-input transition"
                   >
                     <Copy size={18} />
                     <span>{copied ? 'Copied!' : 'Copy Phrase'}</span>
@@ -181,7 +181,7 @@ const Createpage = () => {
                   <button
             
                     onClick={handleNext}
-                    className="w-full bg-primary mt-2 p-2 rounded-xl hover:bg-blue-600 text-primary-foreground"
+                    className="w-full bg-blue-600 mt-2 p-2 rounded-xl hover:bg-blue-900 text-primary-foreground"
                   >
                     I Saved My Phrase Securely
                   </button>

@@ -113,15 +113,59 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
     if (!address) return;
     try {
       setTransactionsLoading(true);
-      // Placeholder: In production, fetch from Etherscan API or similar
-      // For now, just set empty transactions
-      setTransactions([]);
+      // Use Alchemy API to get transaction history
+      const rpcUrl = currentNetwork.rpcUrl;
+      const response = await fetch(rpcUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          method: "alchemy_getAssetTransfers",
+          params: [
+            {
+              fromAddress: address,
+              category: ["external", "internal", "erc20"],
+            },
+          ],
+          id: 1,
+        }),
+      });
+
+      const data = await response.json() as { result?: { transfers: Record<string, unknown>[] } };
+      const transfers = data.result?.transfers || [];
+      
+
+      // Transform into Transaction format
+      const formattedTransactions: WalletContextType["transactions"] =
+        transfers.map((transfer: Record<string, unknown>) => ({
+          hash: String(transfer.hash || ""),
+          from: String(transfer.from || ""),
+          to: String(transfer.to || ""),
+          value: transfer.rawContract
+            ? (
+                Number(transfer.value || 0) /
+                Math.pow(10, Number((transfer.rawContract as Record<string, unknown>).decimal || 18))
+              ).toString()
+            : String(transfer.value || "0"),
+          status: "success" as const,
+          type:
+            String(transfer.from || "").toLowerCase() === address.toLowerCase()
+              ? "sent"
+              : "received",
+          timestamp: transfer.blockNum
+            ? parseInt(String(transfer.blockNum)) * 12 // Approximate timestamp (12s per block)
+            : undefined,
+        }));
+
+      setTransactions(formattedTransactions);
     } catch (error) {
       console.error("Error fetching transactions:", error);
+      // Silently fail - just show no transactions
+      setTransactions([]);
     } finally {
       setTransactionsLoading(false);
     }
-  }, [address]);
+  }, [address, currentNetwork]);
 
   // Auto-refresh balance every 30 seconds when wallet is connected
   useEffect(() => {

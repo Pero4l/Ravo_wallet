@@ -77,7 +77,7 @@ export default function ImportWalletPage() {
         </div>
 
         {/* Card */}
-        <div className="bg-card border border-border rounded-lg p-8 shadow-lg">
+        <div className="bg-[#161b22] border border-gray-600 rounded-lg p-8 shadow-lg">
           {/* Import Method Toggle */}
           <div className="mb-6 flex gap-2 bg-input p-1 rounded-lg">
             <button

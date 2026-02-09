@@ -2,19 +2,19 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex min-h-screen flex-col items-center lg:justify-center py-2">
       {/* Logo */}
 
-      <div className="w-full max-w-md">
+      <div className="w-full lg:max-w-md">
         {/* Logo */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Ravo</h1>
+        <div className="text-center mb-20 lg:mb-2 mt-20 lg:mt-0">
+          <h1 className="text-5xl font-bold text-blue-600">Ravo</h1>
           <p className="text-muted-foreground text-lg">Your crypto. Your control.</p>
         </div>
         </div>
 
          {/* Card Container */}
-        <div className="bg-card border border-border rounded-lg p-10 shadow-lg">
+        <div className="bg-[#161b22] border border-gray-600 rounded-lg p-5 shadow-lg mx-3 mt-10">
           <p className="text-center text-foreground mb-8 ">
             Get started with your secure Web3 wallet in seconds.
           </p>
@@ -36,7 +36,7 @@ export default function Home() {
           </div>
 
           {/* Security Disclaimer */}
-          <div className="pt-4 border-t border-border">
+          <div className="pt-4 border-t border-gray-500">
             <p className="text-xs text-muted-foreground text-center leading-relaxed">
               Your private keys are stored securely on your device. Ravo never stores or transmits your keys.
             </p>
