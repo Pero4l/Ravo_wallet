@@ -7,14 +7,14 @@ export default function Home() {
 
       <div className="w-full lg:max-w-md">
         {/* Logo */}
-        <div className="text-center mb-20 lg:mb-2 mt-20 lg:mt-0">
+        <div className="text-center mb-20 lg:mb-2 mt-32 lg:mt-0">
           <h1 className="text-5xl font-bold text-blue-600">Ravo</h1>
           <p className="text-muted-foreground text-lg">Your crypto. Your control.</p>
         </div>
         </div>
 
          {/* Card Container */}
-        <div className="bg-[#161b22] border border-gray-600 rounded-lg p-5 shadow-lg mx-3 mt-10">
+        <div className="bg-[#161b22] border border-gray-600 rounded-lg p-5 shadow-lg mx-3 mt-1">
           <p className="text-center text-foreground mb-8 ">
             Get started with your secure Web3 wallet in seconds.
           </p>
