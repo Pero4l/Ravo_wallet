@@ -35,8 +35,8 @@ export default function ImportWalletPage() {
 
     if (!password) {
       newErrors.password = 'Password is required'
-    } else if (password.length < 8) {
-      newErrors.password = 'Password must be at least 8 characters'
+    } else if (password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters'
     }
 
     if (password !== confirmPassword) {
@@ -47,7 +47,7 @@ export default function ImportWalletPage() {
     return Object.keys(newErrors).length === 0
   }
 
-  const canSubmit = input && password && password === confirmPassword && password.length >= 8
+  const canSubmit = input && password && password === confirmPassword && password.length >= 6
 
   const handleImport = async () => {
     if (validate()) {

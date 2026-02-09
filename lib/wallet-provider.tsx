@@ -61,13 +61,25 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
     input,
     _password,
   ) => {
-    // example: mnemonic import
     try {
-      const wallet = ethers.Wallet.fromPhrase(input.trim());
-      setAddress(wallet.address);
-      setPrivateKey(wallet.privateKey);
-      setMnemonic(input);
-      setIsConnected(true);
+      const trimmedInput = input.trim();
+
+      // Check if input is a private key (starts with 0x) or recovery phrase
+      if (trimmedInput.startsWith("0x")) {
+        // Private key import
+        const wallet = new ethers.Wallet(trimmedInput);
+        setAddress(wallet.address);
+        setPrivateKey(wallet.privateKey);
+        setMnemonic(null); // No mnemonic for private key imports
+        setIsConnected(true);
+      } else {
+        // Recovery phrase import
+        const hdWallet = ethers.Wallet.fromPhrase(trimmedInput);
+        setAddress(hdWallet.address);
+        setPrivateKey(hdWallet.privateKey);
+        setMnemonic(trimmedInput);
+        setIsConnected(true);
+      }
     } catch (error) {
       console.error("Error importing wallet:", error);
       throw error;

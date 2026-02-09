@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { ChevronDown } from 'lucide-react'
+import { Dot } from 'lucide-react'
 
 interface WalletHeaderProps {
   walletAddress: string
@@ -31,7 +31,7 @@ export function WalletHeader({
           {/* Network Badge */}
           <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-input text-sm">
             <span>{network}</span>
-            <ChevronDown size={14} />
+            <Dot className='text-green-500' size={30} />
           </div>
 
           {/* Address */}
