@@ -93,21 +93,30 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
       setCurrentNetwork(network);
     }
   };
+const refreshBalance = useCallback(async () => {
+  if (!address) return;
 
-  const refreshBalance = useCallback(async () => {
-    if (!address) return;
-    try {
-      setBalanceLoading(true);
-      const provider = new ethers.JsonRpcProvider(currentNetwork.rpcUrl);
-      const balanceWei = await provider.getBalance(address);
-      const balanceEth = ethers.formatEther(balanceWei);
-      setBalance(balanceEth);
-    } catch (error) {
-      console.error("Error fetching balance:", error);
-    } finally {
-      setBalanceLoading(false);
-    }
-  }, [address, currentNetwork]);
+  try {
+    setBalanceLoading(true);
+
+    const res = await fetch("/api/balance", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        address,
+        rpcUrl: currentNetwork.rpcUrl,
+      }),
+    });
+
+    const data = await res.json();
+    setBalance(data.balance);
+  } catch (error) {
+    console.error("Error fetching balance:", error);
+  } finally {
+    setBalanceLoading(false);
+  }
+}, [address, currentNetwork]);
+
 
   const refreshTransactions = useCallback(async () => {
     if (!address) return;

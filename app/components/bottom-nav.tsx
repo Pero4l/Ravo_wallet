@@ -54,8 +54,8 @@ export function BottomNav() {
               href={item.href}
               className={`flex flex-col items-center justify-center gap-1 py-2 px-4 transition ${
                 isActive
-                  ? 'text-primary'
-                  : 'text-gray-400 hover:text-foreground'
+                  ? 'text-blue-500'
+                  : 'text-gray-400 hover:text-gray-200'
               }`}
             >
               <div className={`transition ${isActive ? 'scale-110' : ''}`}>
