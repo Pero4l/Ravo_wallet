@@ -101,7 +101,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Balance Display */}
-        <div className="bg-gradient-to-br from-card to-card/50 border-border p-8">
+        <div className="bg-[#161b22] from-card to-card/50 border border-gray-500 rounded-xl p-8">
           <div className="space-y-4">
             <div>
               <p className="text-muted-foreground text-sm mb-2">Total Balance</p>
