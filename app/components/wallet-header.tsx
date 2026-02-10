@@ -35,8 +35,8 @@ export function WalletHeader({
           </div>
 
           {/* Address */}
-          <div className="px-3 py-1 rounded-full bg-primary/10 text-primary font-mono text-sm flex items-center gap-1">
-          <Dot className='text-green-500' size={30} />
+          <div className="px-3 py-1 rounded-full bg-primary/10 text-primary font-mono text-sm flex items-center">
+          <Dot className='text-green-500' size={40} />
             {shortenedAddress}
           </div>
         </div>

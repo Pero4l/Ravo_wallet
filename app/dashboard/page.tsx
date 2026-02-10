@@ -72,7 +72,7 @@ export default function DashboardPage() {
         {/* Network Selector */}
         <div className="flex gap-2">
           <select
-          className="border-border text-white px-3 py-1 rounded-lg text-sm"
+          className="border border-gray-500 p-2 text-white px-3 py-1 rounded-lg text-sm"
             value={currentNetwork.id}
             onChange={(e) => changeNetwork(e.target.value)}
           >
