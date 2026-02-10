@@ -11,12 +11,12 @@ interface WalletHeaderProps {
 
 export function WalletHeader({
   walletAddress,
-  network,
+  // network,
 }: WalletHeaderProps) {
   const shortenedAddress = `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`
 
   return (
-    <header className="border-b border-border bg-card">
+    <header className="border-b border-gray-700 bg-[#161b22]">
       <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* App / Wallet Name */}
         <div>
