@@ -22,7 +22,7 @@ export default function Home() {
           {/* Buttons */}
           <div className="space-y-5 mb-8">
             <Link href="/create-wallet" className="block">
-              <button className="w-full bg-blue-600 hover:bg-blue-700 p-2 rounded-xl text-primary-foreground">
+              <button className="w-full bg-blue-600 hover:bg-blue-700 p-2 lg:p-3 rounded-xl text-primary-foreground">
                 Create New Wallet
               </button>
             </Link>

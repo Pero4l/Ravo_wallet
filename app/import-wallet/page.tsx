@@ -115,7 +115,7 @@ export default function ImportWalletPage() {
               }
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className={`bg-input  border border-gray-500 rounded-lg p-5 px- text-foreground min-h-24 ${errors.input ? 'border-destructive' : ''}`}
+              className={`bg-input  border border-gray-500 rounded-lg p-5 w-full text-foreground min-h-24 ${errors.input ? 'border-destructive' : ''}`}
             />
             {errors.input && (
               <p className="text-xs text-destructive mt-1 flex items-center gap-1">
@@ -126,8 +126,8 @@ export default function ImportWalletPage() {
           </div>
 
           {/* Warning Alert */}
-          <div className="mb-6 bg-destructive/10 border-destructive/30">
-            <h1 className="text-destructive text-sm">
+          <div className="mb-6 bg-[#2c1f25] border border-[#3d2c34] p-4 rounded-lg">
+            <h1 className="text-red-500 text-sm">
               ⚠️ Never share your recovery phrase or private key. Only import on trusted devices.
             </h1>
           </div>
@@ -140,7 +140,7 @@ export default function ImportWalletPage() {
               placeholder="Create a strong password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={`bg-input border-border text-foreground ${errors.password ? 'border-destructive' : ''}`}
+              className={`bg-[#161b22] border-gray-500 p-1 px-3 rounded-lg w-full outline-none border text-foreground ${errors.password ? 'border-destructive' : ''}`}
             />
             {errors.password && (
               <p className="text-xs text-destructive mt-1 flex items-center gap-1">
@@ -158,10 +158,10 @@ export default function ImportWalletPage() {
               placeholder="Confirm your password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className={`bg-input border-border text-foreground ${errors.confirmPassword ? 'border-destructive' : ''}`}
+              className={`bg-[#161b22] border-gray-500 p-1 px-3 rounded-lg w-full outline-none border text-foreground ${errors.confirmPassword ? 'border-destructive' : ''}`}
             />
             {errors.confirmPassword && (
-              <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+              <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
                 <AlertCircle size={14} />
                 {errors.confirmPassword}
               </p>
@@ -171,7 +171,7 @@ export default function ImportWalletPage() {
           {/* Import Button */}
           <button
             
-            className="w-full bg-primary hover:bg-blue-600 text-primary-foreground disabled:opacity-50"
+            className="w-full bg-blue-500 hover:bg-blue-700 p-2 rounded-lg text-primary-foreground disabled:opacity-50"
             disabled={!canSubmit}
             onClick={handleImport}
           >
