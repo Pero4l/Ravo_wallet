@@ -43,13 +43,13 @@ export default function TransactionsPage() {
       <header className="bg-[#161b22] border-b border-gray-500 sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center gap-4">
           <Link href="/dashboard">
-            <button className="hover:bg-input text-foreground">
+            <button className="hover:bg-input ">
               <ArrowLeft size={20} />
             </button>
           </Link>
           <div>
             <h1 className="text-2xl font-bold">Transaction History</h1>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-gray-300 text-sm">
               {transactions.length} transactions
             </p>
           </div>
@@ -58,11 +58,11 @@ export default function TransactionsPage() {
 
       <div className="max-w-4xl mx-auto px-4 py-8">
         {transactionsLoading ? (
-          <div className="bg-[#161b22] border border-gray-500 p-8 text-center text-muted-foreground">
+          <div className="bg-[#161b22] border border-gray-500 p-8 text-center text-gray-300">
             Loading transactions...
           </div>
         ) : transactions.length === 0 ? (
-          <div className="bg-[#161b22] border border-gray-500 p-8 text-center text-muted-foreground">
+          <div className="bg-[#161b22] border border-gray-500 rounded-lg p-8 text-center text-gray-300">
             No transactions found
           </div>
         ) : (
@@ -103,12 +103,12 @@ export default function TransactionsPage() {
                           )}
                         </div>
 
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-gray-300">
                           {tx.type === 'received'
                             ? formatAddress(tx.from)
                             : formatAddress(tx.to)}
                         </p>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-xs text-gray-300">
                           {formatDate(tx.timestamp)}
                         </p>
                       </div>
@@ -121,7 +121,7 @@ export default function TransactionsPage() {
                         {parseFloat(tx.value).toFixed(4)}{' '}
                         {currentNetwork.currency}
                       </p>
-                      <ExternalLink size={14} className="text-muted-foreground mt-1 ml-auto" />
+                      <ExternalLink size={14} className="text-gray-300 mt-1 ml-auto" />
                     </div>
                   </div>
                 </div>

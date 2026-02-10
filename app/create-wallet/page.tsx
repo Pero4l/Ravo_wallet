@@ -85,7 +85,7 @@ const Createpage = () => {
         <main className="min-h-screen flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-2xl">
         {/* Back Button */}
-        <Link href="/" className="mb-4 inline-flex">
+        <Link href="/landing" className="mb-4 inline-flex">
           <button  className="text-muted-foreground hover:bg-red-600 flex items-center px-1 py-1 rounded-lg transition">
             <ArrowLeft size={16} className="mr-2" />
             Back
@@ -96,7 +96,7 @@ const Createpage = () => {
           <div>
             {/* Header */}
             <div className="mb-8">
-              <h1 className="text-3xl font-bold text-foreground mb-2">Your Recovery Phrase</h1>
+              <h1 className="text-3xl font-bold mb-2">Your Recovery Phrase</h1>
               <p className="text-gray-400">
                 Write down these 12 words in order. Store them safely offline.
               </p>
@@ -113,7 +113,7 @@ const Createpage = () => {
                 <div>
                   {/* Toggle */}
                   <div className="flex justify-between items-center pb-2">
-                    <h2 className="text-lg font-semibold text-foreground">Recovery Phrase</h2>
+                    <h2 className="text-lg font-semibold">Recovery Phrase</h2>
                     <button
                       onClick={() => setShowPhrase(!showPhrase)}
                       className="flex items-center gap-2 text-primary hover:text-blue-400 transition"
@@ -141,8 +141,8 @@ const Createpage = () => {
                             key={index}
                             className="bg-[#161b22] border border-gray-600 rounded px-3 py-2 text-center"
                           >
-                            <div className="text-xs text-muted-foreground mb-1">{index + 1}</div>
-                            <div className="text-sm font-medium text-foreground">{word}</div>
+                            <div className="text-xs  mb-1">{index + 1}</div>
+                            <div className="text-sm font-medium">{word}</div>
                           </div>
                         ))}
                       </div>
@@ -162,16 +162,16 @@ const Createpage = () => {
                   </div>
 
                   {/* Warning Alert */}
-                  <div className="bg-red-700 border-red p-3 rounded-lg mt-2 mb-2">
-                    <h1 className=" text-sm">
-                     <span className="flex items-center gap-2"><ShieldAlert size={20} className="" /> Warning:</span> Never share your recovery phrase. Anyone with these words can access your funds.
+                  <div className="bg-red-600/20 border-red-500 border p-3 rounded-lg mt-2 mb-2">
+                    <h1 className=" text-sm text-red-500">
+                     <span className="flex items-center gap-2 text-white"><ShieldAlert size={20} className="" /> Warning:</span> Never share your recovery phrase. Anyone with these words can access your funds.
                     </h1>
                   </div>
 
                   {/* Copy Button */}
                   <button
                     onClick={handleCopy}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2 border border-gray-600 rounded-lg text-foreground hover:bg-input transition"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-2 border border-gray-600 rounded-lg  hover:bg-gray-700 transition"
                   >
                     <Copy size={18} />
                     <span>{copied ? 'Copied!' : 'Copy Phrase'}</span>
@@ -197,7 +197,7 @@ const Createpage = () => {
 
             {/* Set Password Header */}
             <div className="mb-8">
-              <h1 className="text-3xl font-bold text-foreground mb-2">Create Password</h1>
+              <h1 className="text-3xl font-bold mb-2">Create Password</h1>
               <p className="text-muted-foreground">
                 Set a strong password to secure your wallet
               </p>
@@ -206,24 +206,24 @@ const Createpage = () => {
             {/* Password Card */}
             <div className="bg-[#161b22] border border-gray-500 rounded-lg p-8 shadow-lg space-y-4">
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Password</label>
+                <label className="block text-sm font-medium mb-2">Password</label>
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="At least 6 characters"
-                  className="w-full bg-input border border-border rounded-lg px-4 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full bg-input border border-border rounded-lg px-4 py-2 placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Confirm Password</label>
+                <label className="block text-sm font-medium mb-2">Confirm Password</label>
                 <input
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Confirm your password"
-                  className="w-full bg-input border border-border rounded-lg px-4 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full bg-input border border-border rounded-lg px-4 py-2 placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
             {/*  */}
@@ -236,7 +236,7 @@ const Createpage = () => {
               <button
                 onClick={handleCreateWallet}
                 
-                className="w-full bg-blue-600 p-2 rounded-xl hover:bg-blue-800 text-primary-foreground"
+                className="w-full bg-blue-500 p-2 rounded-xl hover:bg-blue-800 text-primary-foreground"
               >
                 Create Wallet
               </button>
@@ -244,7 +244,7 @@ const Createpage = () => {
               <button
                 onClick={() => setStep('display')}
                 
-                className="w-full hover:bg-red-600 hover:p-2 rounded-xl  border-border text-foreground hover:bg-card"
+                className="w-full hover:bg-red-600 hover:p-2 rounded-xl  border-border hover:bg-card"
               >
                 Back
               </button>

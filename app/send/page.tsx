@@ -117,12 +117,12 @@ export default function SendPage() {
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <Link href="/dashboard">
-            <button className="hover:bg-input text-foreground">
+            <button className="hover:bg-input">
               <ArrowLeft size={20} />
             </button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Send</h1>
+            <h1 className="text-3xl font-bold">Send</h1>
             <p className="text-muted-foreground text-sm">
               Send crypto to another wallet
             </p>
@@ -133,14 +133,14 @@ export default function SendPage() {
         <div className="bg-[#161b22] border border-gray-500 rounded-lg p-8 shadow-lg">
           {/* Recipient */}
           <div className="mb-6">
-            <label className="text-sm font-medium text-foreground mb-2 block">
+            <label className="text-sm font-medium mb-2 block">
               Recipient Address
             </label>
             <input
               placeholder="0x..."
               value={recipient}
               onChange={(e) => setRecipient(e.target.value)}
-              className={`bg-input border border-gray-500 w-full p-2 px-3 rounded-lg text-foreground ${errors.recipient ? "border-destructive" : ""}`}
+              className={`bg-input border border-gray-500 w-full p-2 px-3 rounded-lg ${errors.recipient ? "border-destructive" : ""}`}
             />
             {errors.recipient && (
               <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
@@ -152,7 +152,7 @@ export default function SendPage() {
 
           {/* Amount */}
           <div className="mb-6">
-            <label className="text-sm font-medium text-foreground mb-2 block">
+            <label className="text-sm font-medium mb-2 block">
               Amount (ETH)
             </label>
             <input
@@ -161,7 +161,7 @@ export default function SendPage() {
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               step="0.001"
-              className={`bg-input border border-gray-500 w-full p-2 px-3 rounded-lg text-foreground ${errors.amount ? "border-destructive" : ""}`}
+              className={`bg-input border border-gray-500 w-full p-2 px-3 rounded-lg ${errors.amount ? "border-destructive" : ""}`}
             />
             {errors.amount && (
               <p className="text-xs text-red-500 mt-1 flex items-center gap-1">

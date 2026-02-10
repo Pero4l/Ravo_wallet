@@ -114,7 +114,7 @@ export default function DashboardPage() {
                   {currentNetwork.currency || 'ETH'}
                 </span>
               </div>
-              <p className="text-muted-foreground text-sm mt-2">
+              <p className="text-gray-300 text-sm mt-2">
                 ≈ ${(parseFloat(context.balance || '0') * 2450).toFixed(2)}
               </p>
             </div>
@@ -122,14 +122,14 @@ export default function DashboardPage() {
             {/* Action Buttons */}
             <div className="grid grid-cols-2 gap-3 pt-4">
               <Link href="/send">
-                <button className="w-full bg-blue-900 hover:bg-blue-500 text-primary-foreground flex flex-col items-center justify-center gap-3 p-3 rounded-lg">
+                <button className="w-full bg-blue-900/25 hover:bg-blue-500 text-primary-foreground flex flex-col items-center justify-center gap-3 p-3 rounded-lg">
                   <Send size={20} className="mr-2" />
                   Send
                 </button>
               </Link>
               <Link href="/receive">
                 <button
-                  className="w-full bg-blue-900 hover:bg-blue-500 text-primary-foreground flex flex-col items-center justify-center gap-3 p-3 rounded-lg"
+                  className="w-full bg-blue-900/25 hover:bg-blue-500 text-primary-foreground flex flex-col items-center justify-center gap-3 p-3 rounded-lg"
                 >
                   <ArrowDownLeft size={20} className="mr-2" />
                   Receive
@@ -172,13 +172,13 @@ export default function DashboardPage() {
 
           {transactionsLoading ? (
             <div className="bg-[#161b22] border border-gray-500 rounded-xl p-4">
-              <p className="text-muted-foreground text-center py-8">
+              <p className="text-gray-300 text-center py-8">
                 Loading transactions...
               </p>
             </div>
           ) : recentTransactions.length === 0 ? (
             <div className="bg-[#161b22] border border-gray-500 rounded-xl p-4">
-              <p className="text-muted-foreground text-center py-8">
+              <p className="text-gray-300 text-center py-8">
                 No transactions yet
               </p>
             </div>
@@ -206,7 +206,7 @@ export default function DashboardPage() {
                           <p className="font-medium">
                             {tx.type === 'received' ? 'Received' : 'Sent'}
                           </p>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-sm text-gray-300">
                             {tx.status === 'success' && 'Completed'}
                             {tx.status === 'failed' && 'Failed'}
                             {tx.status === 'pending' && 'Pending'}
@@ -221,7 +221,7 @@ export default function DashboardPage() {
                         </p>
                         <ExternalLink
                           size={14}
-                          className="text-muted-foreground mt-1 ml-auto"
+                          className="text-gray-300 mt-1 ml-auto"
                         />
                       </div>
                     </div>

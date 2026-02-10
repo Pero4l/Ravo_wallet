@@ -48,11 +48,11 @@ export default function SettingsPage() {
       <header className="bg-[#161b22]  border-gray-500 sticky top-0 z-10">
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-4">
           <Link href="/dashboard">
-            <button  className="hover:bg-input text-foreground">
+            <button  className="hover:bg-input ">
               <ArrowLeft size={20} />
             </button>
           </Link>
-          <h1 className="text-2xl font-bold text-foreground">Settings</h1>
+          <h1 className="text-2xl font-bold ">Settings</h1>
         </div>
       </header>
 
@@ -73,7 +73,7 @@ export default function SettingsPage() {
                 <div className="flex items-center gap-3">
                   <Eye size={20} className="text-muted-foreground" />
                   <div>
-                    <p className="text-foreground font-medium">View Recovery Phrase</p>
+                    <p className=" font-medium">View Recovery Phrase</p>
                     <p className="text-gray-400 text-sm">See your backup phrase</p>
                   </div>
                 </div>
@@ -88,7 +88,7 @@ export default function SettingsPage() {
                       Never share this phrase. Anyone with it can access your funds.
                     </p>
                   </div>
-                  <div className="bg-input border border-gray-500 rounded-lg p-3 font-mono text-sm text-foreground break-words">
+                  <div className="bg-input border border-gray-500 rounded-lg p-3 font-mono text-sm  break-words">
                     {mnemonic}
                   </div>
                   <button
@@ -108,7 +108,7 @@ export default function SettingsPage() {
                 <div className="flex items-center gap-3">
                   <Lock size={20} className="text-muted-foreground" />
                   <div>
-                    <p className="text-foreground font-medium">Change Password</p>
+                    <p className=" font-medium">Change Password</p>
                     <p className="text-gray-400 text-sm">Update your wallet password</p>
                   </div>
                 </div>
@@ -122,12 +122,12 @@ export default function SettingsPage() {
         <div>
           <div className="flex items-center gap-2 mb-4">
             <Bell size={20} className="text-blue-500" />
-            <h2 className="text-lg font-semibold text-foreground">Notifications</h2>
+            <h2 className="text-lg font-semibold ">Notifications</h2>
           </div>
           <div className="space-y-2">
             <div className="bg-[#161b22] border border-gray-500  rounded-xl p-4 flex items-center flex-col justify-between gap-4">
               <div>
-                <p className="text-foreground font-medium">Transaction Alerts</p>
+                <p className=" font-medium">Transaction Alerts</p>
                 <p className="text-gray-400 text-sm">Notify on transaction events</p>
               </div>
               <input
@@ -144,28 +144,28 @@ export default function SettingsPage() {
         <div>
           <div className="flex items-center gap-2 mb-4">
             <Lock size={20} className="text-blue-500" />
-            <h2 className="text-lg font-semibold text-foreground">Display</h2>
+            <h2 className="text-lg font-semibold ">Display</h2>
           </div>
           <div className="space-y-2">
             <div className="bg-[#161b22] border border-gray-500  rounded-xl p-4">
               <div className="space-y-3">
                 <div>
-                  <p className="text-foreground font-medium mb-2">Currency Display</p>
+                  <p className=" font-medium mb-2">Currency Display</p>
                   <select
                     value={settings.currencyDisplay}
                     onChange={(e) => updateSettings({ currencyDisplay: e.target.value as 'USD' | 'ETH' })}
-                    className="w-full bg-input border border-gray-500 rounded-lg p-2 text-foreground"
+                    className="w-full bg-input border border-gray-500 rounded-lg p-2 "
                   >
                     <option value="USD">USD</option>
                     <option value="ETH">Crypto (ETH)</option>
                   </select>
                 </div>
                 <div>
-                  <p className="text-foreground font-medium mb-2">Auto-lock Timer</p>
+                  <p className=" font-medium mb-2">Auto-lock Timer</p>
                   <select
                     value={settings.lockTimeout}
                     onChange={(e) => updateSettings({ lockTimeout: parseInt(e.target.value) })}
-                    className="w-full bg-input border border-gray-500 rounded-lg p-2 text-foreground"
+                    className="w-full bg-input border border-gray-500 rounded-lg p-2 "
                   >
                     <option value={1}>1 minute</option>
                     <option value={5}>5 minutes</option>
@@ -180,12 +180,12 @@ export default function SettingsPage() {
 
         {/* Account Actions */}
         <div>
-          <h2 className="text-lg font-semibold text-foreground mb-4">Account</h2>
+          <h2 className="text-lg font-semibold  mb-4">Account</h2>
           <div className="space-y-2">
             {/* Logout */}
             <button
               onClick={handleLogout}
-              className="w-full bg-gray-700 hover:bg-gray-600 p-2 rounded-lg text-foreground flex items-center justify-center gap-2"
+              className="w-full bg-gray-700 hover:bg-gray-600 p-2 rounded-lg  flex items-center justify-center gap-2"
             >
               <LogOut size={16} />
               Logout
@@ -211,13 +211,13 @@ export default function SettingsPage() {
                   </div>
                 </div>
 
-                <p className="text-foreground mb-4">
+                <p className=" mb-4">
                   Are you sure you want to reset your wallet? This will delete all local data.
                 </p>
 
                 <div className="grid grid-cols-2 gap-3">
                   <button
-                    className="border-border text-foreground hover:bg-input bg-transparent px-4 py-2 rounded-lg"
+                    className="border-border  hover:bg-input bg-transparent px-4 py-2 rounded-lg"
                     onClick={() => setShowResetConfirm(false)}
                   >
                     Cancel

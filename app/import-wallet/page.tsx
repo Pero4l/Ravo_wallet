@@ -66,12 +66,12 @@ export default function ImportWalletPage() {
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <Link href="/">
-            <button  className="hover:bg-input text-foreground">
+            <button  className="hover:bg-input">
               <ArrowLeft size={20} />
             </button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Import Wallet</h1>
+            <h1 className="text-3xl font-bold ">Import Wallet</h1>
             <p className="text-muted-foreground text-sm">Access your existing wallet</p>
           </div>
         </div>
@@ -85,7 +85,7 @@ export default function ImportWalletPage() {
               className={`flex-1 py-2 px-3 rounded text-sm font-medium transition ${
                 importMethod === 'phrase'
                   ? 'bg-blue-500 text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
+                  : 'text-muted-foreground hover:'
               }`}
             >
               Recovery Phrase
@@ -95,7 +95,7 @@ export default function ImportWalletPage() {
               className={`flex-1 py-2 px-3 rounded text-sm font-medium transition ${
                 importMethod === 'privateKey'
                   ? 'bg-blue-500 text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
+                  : 'text-muted-foreground hover:'
               }`}
             >
               Private Key
@@ -104,7 +104,7 @@ export default function ImportWalletPage() {
 
           {/* Recovery Phrase or Private Key Input */}
           <div className="mb-6 ">
-            <label className="text-sm font-medium text-foreground mb-2 block">
+            <label className="text-sm font-medium  mb-2 block">
               {importMethod === 'phrase' ? 'Recovery Phrase (12 words)' : 'Private Key'}
             </label>
             <textarea
@@ -115,10 +115,10 @@ export default function ImportWalletPage() {
               }
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className={`bg-input  border border-gray-500 rounded-lg p-5 w-full text-foreground min-h-24 ${errors.input ? 'border-destructive' : ''}`}
+              className={`bg-input  border border-gray-500 rounded-lg p-5 w-full  min-h-24 ${errors.input ? 'border-red-500' : ''}`}
             />
             {errors.input && (
-              <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+              <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
                 <AlertCircle size={14} />
                 {errors.input}
               </p>
@@ -134,16 +134,16 @@ export default function ImportWalletPage() {
 
           {/* Password Input */}
           <div className="mb-6">
-            <label className="text-sm font-medium text-foreground mb-2 block">Password</label>
+            <label className="text-sm font-medium  mb-2 block">Password</label>
             <input
               type="password"
               placeholder="Create a strong password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={`bg-[#161b22] border-gray-500 p-1 px-3 rounded-lg w-full outline-none border text-foreground ${errors.password ? 'border-destructive' : ''}`}
+              className={`bg-[#161b22] border-gray-500 p-1 px-3 rounded-lg w-full outline-none border  ${errors.password ? 'border-red-500' : ''}`}
             />
             {errors.password && (
-              <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+              <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
                 <AlertCircle size={14} />
                 {errors.password}
               </p>
@@ -152,13 +152,13 @@ export default function ImportWalletPage() {
 
           {/* Confirm Password Input */}
           <div className="mb-6">
-            <label className="text-sm font-medium text-foreground mb-2 block">Confirm Password</label>
+            <label className="text-sm font-medium  mb-2 block">Confirm Password</label>
             <input
               type="password"
               placeholder="Confirm your password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className={`bg-[#161b22] border-gray-500 p-1 px-3 rounded-lg w-full outline-none border text-foreground ${errors.confirmPassword ? 'border-destructive' : ''}`}
+              className={`bg-[#161b22] border-gray-500 p-1 px-3 rounded-lg w-full outline-none border  ${errors.confirmPassword ? 'border-red-500' : ''}`}
             />
             {errors.confirmPassword && (
               <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
@@ -180,7 +180,7 @@ export default function ImportWalletPage() {
 
           {/* Back Link */}
           <Link href="/" className="block mt-3">
-            <button className="w-full border-border text-foreground hover:bg-input bg-transparent">
+            <button className="w-full border-border  hover:bg-input bg-transparent">
               Back to Welcome
             </button>
           </Link>

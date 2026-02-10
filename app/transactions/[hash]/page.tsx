@@ -43,18 +43,18 @@ export default function TransactionDetailPage({
         <header className="bg-card border-b border-border sticky top-0 z-10">
           <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-4">
             <Link href="/transactions">
-              <button className="hover:bg-input text-foreground">
+              <button className="hover:bg-input text-gray-200">
                 <ArrowLeft size={20} />
               </button>
             </Link>
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-2xl font-bold text-gray-200">
               Transaction Not Found
             </h1>
           </div>
         </header>
         <div className="max-w-2xl mx-auto px-4 py-8">
           <div className="bg-card border-border p-8 text-center">
-            <p className="text-muted-foreground">
+            <p className="text-gray-400">
               This transaction could not be found.
             </p>
             <Link href="/transactions" className="mt-4 inline-block">
@@ -99,12 +99,12 @@ export default function TransactionDetailPage({
       <header className="bg-[#161b22] border-b border-gray-500 sticky top-0 z-10">
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-4">
           <Link href="/transactions">
-            <button className="hover:bg-input text-foreground">
+            <button className="hover:bg-input text-gray-200">
               <ArrowLeft size={20} />
             </button>
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-2xl font-bold text-gray-200">
               Transaction Details
             </h1>
           </div>
@@ -131,14 +131,14 @@ export default function TransactionDetailPage({
             )}
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-foreground mb-2">
+            <h2 className="text-xl font-semibold text-gray-200 mb-2">
               {transaction.status === "success" && "Transaction Confirmed"}
               {transaction.status === "failed" && "Transaction Failed"}
               {transaction.status === "pending" && "Transaction Pending"}
             </h2>
             <p className="text-muted-foreground">
               {transaction.type === "received" ? "You received" : "You sent"}{" "}
-              <span className="font-semibold text-foreground">
+              <span className="font-semibold text-gray-200">
                 {parseFloat(transaction.value).toFixed(4)}{" "}
                 {currentNetwork.currency}
               </span>
@@ -148,11 +148,11 @@ export default function TransactionDetailPage({
 
         {/* Amount Details */}
         <div className="bg-card border-border p-6 space-y-4">
-          <h3 className="font-semibold text-foreground mb-4">Amount</h3>
+          <h3 className="font-semibold text-gray-200 mb-4">Amount</h3>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <span className="text-muted-foreground">Amount</span>
-              <span className="font-semibold text-foreground">
+              <span className="font-semibold text-gray-200">
                 {parseFloat(transaction.value).toFixed(4)}{" "}
                 {currentNetwork.currency}
               </span>
@@ -160,7 +160,7 @@ export default function TransactionDetailPage({
             {transaction.gasPrice && (
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Gas Price</span>
-                <span className="font-mono text-sm text-foreground">
+                <span className="font-mono text-sm text-gray-200">
                   {transaction.gasPrice} Gwei
                 </span>
               </div>
@@ -168,7 +168,7 @@ export default function TransactionDetailPage({
             {transaction.gasUsed && (
               <div className="flex justify-between items-center">
                 <span className="text-muted-foreground">Gas Used</span>
-                <span className="font-mono text-sm text-foreground">
+                <span className="font-mono text-sm text-gray-200">
                   {transaction.gasUsed}
                 </span>
               </div>
@@ -178,7 +178,7 @@ export default function TransactionDetailPage({
 
         {/* Transaction Info */}
         <div className="bg-card border-border p-6 space-y-4">
-          <h3 className="font-semibold text-foreground mb-4">
+          <h3 className="font-semibold text-gray-200 mb-4">
             Transaction Info
           </h3>
           <div className="space-y-4">
@@ -191,7 +191,7 @@ export default function TransactionDetailPage({
                 </span>
                 <Copy
                   size={16}
-                  className="text-muted-foreground cursor-pointer hover:text-foreground shrink-0"
+                  className="text-muted-foreground cursor-pointer hover:text-gray-200 shrink-0"
                   onClick={() => {
                     navigator.clipboard.writeText(transaction.from);
                   }}
@@ -208,7 +208,7 @@ export default function TransactionDetailPage({
                 </span>
                 <Copy
                   size={16}
-                  className="text-muted-foreground cursor-pointer hover:text-foreground shrink-0"
+                  className="text-muted-foreground cursor-pointer hover:text-gray-200 shrink-0"
                   onClick={() => {
                     navigator.clipboard.writeText(transaction.to);
                   }}
@@ -227,7 +227,7 @@ export default function TransactionDetailPage({
                 </span>
                 <Copy
                   size={16}
-                  className="text-muted-foreground cursor-pointer hover:text-foreground shrink-0"
+                  className="text-muted-foreground cursor-pointer hover:text-gray-200 shrink-0"
                   onClick={() => {
                     navigator.clipboard.writeText(transaction.hash);
                   }}
@@ -241,7 +241,7 @@ export default function TransactionDetailPage({
                 <p className="text-muted-foreground text-sm mb-2">
                   Block Number
                 </p>
-                <p className="font-mono text-foreground">
+                <p className="font-mono text-gray-200">
                   {transaction.blockNumber}
                 </p>
               </div>
@@ -250,7 +250,7 @@ export default function TransactionDetailPage({
             {/* Timestamp */}
             <div>
               <p className="text-muted-foreground text-sm mb-2">Time</p>
-              <p className="text-foreground">
+              <p className="text-gray-200">
                 {formatDate(transaction.timestamp)}
               </p>
             </div>

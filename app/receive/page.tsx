@@ -26,13 +26,13 @@ export default function ReceivePage() {
           <Link href="/dashboard">
             <button
              
-              className="hover:bg-input text-foreground"
+              className="hover:bg-input "
             >
               <ArrowLeft size={20} />
             </button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Receive</h1>
+            <h1 className="text-3xl font-bold ">Receive</h1>
             <p className="text-muted-foreground text-sm">
               Share your wallet address
             </p>
@@ -73,10 +73,10 @@ export default function ReceivePage() {
 
           {/* Address Display */}
           <div className="mb-6">
-            <label className="text-sm font-medium text-foreground mb-2 block">
+            <label className="text-sm font-medium text-gray-400 mb-2 block">
               Your Address
             </label>
-            <div className="bg-[#161b22] border border-gray-500 rounded-lg p-4 font-mono text-sm text-foreground break-all">
+            <div className="bg-[#161b22] border border-gray-500 rounded-lg p-4 font-mono text-sm  break-all">
               {address}
             </div>
           </div>
@@ -102,7 +102,7 @@ export default function ReceivePage() {
           <Link href="/dashboard" className="block mt-8">
             <button
               
-              className="w-full border-border text-foreground hover:bg-input bg-transparent"
+              className="w-full border-border  hover:bg-input bg-transparent"
             >
               Back to Dashboard
             </button>

@@ -15,7 +15,7 @@ export default function LandingPage() {
 
          {/* Card Container */}
         <div className="bg-[#161b22] border border-gray-600 rounded-lg p-10 shadow-lg mx-4 mt-1">
-          <p className="text-center text-foreground mb-8 ">
+          <p className="text-center mb-8 ">
             Get started with your secure Web3 wallet in seconds.
           </p>
 
@@ -28,7 +28,7 @@ export default function LandingPage() {
             </Link>
             <Link href="/import-wallet" className="block">
               <button
-                className="w-full border-border hover:text-blue-700 text-foreground hover:bg-card bg-transparent"
+                className="w-full border border-gray-600 hover:text-blue-700 p-2 rounded-lg bg-transparent"
               >
                 Import Existing Wallet
               </button>
