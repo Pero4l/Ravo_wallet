@@ -7,7 +7,7 @@ export default function LandingPage() {
 
       <div className="w-full lg:max-w-md">
         {/* Logo */}
-        <div className="text-center mb-20 lg:mb-2 mt-32 lg:mt-0">
+        <div className="text-center mb-20 lg:mb-10 mt-32 lg:mt-0">
           <h1 className="text-5xl font-bold text-blue-600">Ravo</h1>
           <p className="text-muted-foreground text-lg">Your crypto. Your control.</p>
         </div>
