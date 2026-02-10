@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <WalletProvider>
-          <div className="min-h-screen pb-16 md:pb-0">
+          <div className="min-h-screen pb-16 md:pb-0 text-white">
             {children}
           </div>
           <BottomNav />

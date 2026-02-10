@@ -97,7 +97,7 @@ const Createpage = () => {
             {/* Header */}
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-foreground mb-2">Your Recovery Phrase</h1>
-              <p className="text-muted-foreground">
+              <p className="text-gray-400">
                 Write down these 12 words in order. Store them safely offline.
               </p>
             </div>
@@ -107,7 +107,7 @@ const Createpage = () => {
               {loading ? (
                 <div className="flex flex-col items-center justify-center py-12">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
-                  <p className="text-muted-foreground">Generating your wallet...</p>
+                  <p className="text-gray-400">Generating your wallet...</p>
                 </div>
               ) : (
                 <div>
