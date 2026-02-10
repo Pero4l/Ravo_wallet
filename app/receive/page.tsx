@@ -40,10 +40,10 @@ export default function ReceivePage() {
         </div>
 
         {/* Card */}
-        <div className="bg-card border border-border rounded-lg p-8 shadow-lg">
+        <div className="bg-[#161b22] border border-gray-500 rounded-lg p-8 shadow-lg">
           {/* QR Code Placeholder */}
           <div className="mb-8">
-            <div className="bg-background border-2 border-dashed border-border rounded-lg p-8 flex items-center justify-center aspect-square">
+            <div className="bg-background border-2 border-dashed border-gray-500 rounded-lg p-8 flex items-center justify-center aspect-square">
               <div className="text-center">
                 <div className="text-5xl mb-2">█ █ █</div>
                 <div className="text-5xl mb-2">█ █ █</div>
@@ -52,7 +52,7 @@ export default function ReceivePage() {
                   QR Code Placeholder
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  In a real app, a QR code would be generated here
+                  Soon, a QR code would be generated here
                 </p>
               </div>
             </div>
@@ -64,10 +64,10 @@ export default function ReceivePage() {
           {/* Divider */}
           <div className="relative mb-8">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-border" />
+              <div className="w-full border-t border-gray-500" />
             </div>
             <div className="relative flex justify-center text-xs">
-              <span className="px-2 bg-card text-muted-foreground">or</span>
+              <span className="px-2 bg-[#161b22] text-muted-foreground">or</span>
             </div>
           </div>
 
@@ -76,7 +76,7 @@ export default function ReceivePage() {
             <label className="text-sm font-medium text-foreground mb-2 block">
               Your Address
             </label>
-            <div className="bg-background border border-border rounded-lg p-4 font-mono text-sm text-foreground break-all">
+            <div className="bg-[#161b22] border border-gray-500 rounded-lg p-4 font-mono text-sm text-foreground break-all">
               {address}
             </div>
           </div>
@@ -84,14 +84,14 @@ export default function ReceivePage() {
           {/* Copy Button */}
           <button
             onClick={handleCopy}
-            className="w-full flex items-center justify-center gap-2 px-4 py-3 mb-6 bg-primary hover:bg-blue-600 text-primary-foreground rounded-lg font-medium transition"
+            className="w-full flex items-center justify-center gap-2 px-4 py-3 mb-6 bg-blue-500 hover:bg-blue-700 text-primary-foreground rounded-lg font-medium transition"
           >
             <Copy size={18} />
             <span>{copied ? "Address Copied!" : "Copy Address"}</span>
           </button>
 
           {/* Network Warning */}
-          <div className="p-3 bg-blue-500/10 border border-primary/30 rounded-lg">
+          <div className="p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
             <p className="text-xs  leading-relaxed">
               <strong>Network:</strong> Make sure the sender is using the
               Ethereum Mainnet. Tokens sent from other networks may be lost.
