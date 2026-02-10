@@ -45,7 +45,7 @@ export default function SettingsPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Header Bar */}
-      <header className="bg-card border-b border-border sticky top-0 z-10">
+      <header className="bg-[#161b22]  border-gray-500 sticky top-0 z-10">
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-4">
           <Link href="/dashboard">
             <button  className="hover:bg-input text-foreground">
@@ -60,12 +60,12 @@ export default function SettingsPage() {
         {/* Security Section */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <Shield size={20} className="text-primary" />
-            <h2 className="text-lg font-semibold text-foreground">Security</h2>
+            <Shield size={20} className="text-blue-500" />
+            <h2 className="text-lg font-semibold ">Security</h2>
           </div>
           <div className="space-y-2">
             {/* View Recovery Phrase */}
-            <div className="bg-card border-border p-0 overflow-hidden hover:border-primary transition">
+            <div className="bg-[#161b22] border border-gray-500  rounded-xl p-0 overflow-hidden hover:border-primary transition">
               <button
                 onClick={() => setShowRecoveryPhrase(!showRecoveryPhrase)}
                 className="w-full flex items-center justify-between text-left p-4"
@@ -74,26 +74,26 @@ export default function SettingsPage() {
                   <Eye size={20} className="text-muted-foreground" />
                   <div>
                     <p className="text-foreground font-medium">View Recovery Phrase</p>
-                    <p className="text-muted-foreground text-sm">See your backup phrase</p>
+                    <p className="text-gray-400 text-sm">See your backup phrase</p>
                   </div>
                 </div>
                 <ChevronRight size={20} className={`text-muted-foreground transition ${showRecoveryPhrase ? 'rotate-90' : ''}`} />
               </button>
 
               {showRecoveryPhrase && mnemonic && (
-                <div className="border-t border-border bg-background/50 p-4 space-y-3">
-                  <div className="bg-destructive/10 border-destructive/30">
-                    <AlertTriangle size={16} className="text-destructive" />
-                    <p className="text-destructive text-sm">
+                <div className="border-t border-gray-500 bg-background/50 p-4 space-y-3">
+                  <div className="bg-[#2c1f25] border border-[#3d2c34] rounded-lg flex gap-2 p-4 ">
+                    <AlertTriangle size={26} className="text-red-500" />
+                    <p className="text-red-500 text-sm">
                       Never share this phrase. Anyone with it can access your funds.
                     </p>
                   </div>
-                  <div className="bg-input border border-border rounded-lg p-4 font-mono text-sm text-foreground break-words">
+                  <div className="bg-input border border-gray-500 rounded-lg p-3 font-mono text-sm text-foreground break-words">
                     {mnemonic}
                   </div>
                   <button
                     onClick={handleCopyPhrase}
-                    className="w-full flex items-center justify-center gap-2 py-2 px-3 hover:bg-border rounded-lg transition text-sm text-accent"
+                    className="w-full flex items-center justify-center gap-2 py-2 px-3 hover:bg-border rounded-lg transition text-sm text-green-500"
                   >
                     <Copy size={16} />
                     {copied ? 'Copied!' : 'Copy Phrase'}
@@ -103,13 +103,13 @@ export default function SettingsPage() {
             </div>
 
             {/* Change Password */}
-            <div className="bg-card border-border rounded-lg p-4 hover:bg-input transition cursor-pointer">
+            <div className="bg-[#161b22] border border-gray-500  rounded-xl p-4 hover:bg-input transition cursor-pointer">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <Lock size={20} className="text-muted-foreground" />
                   <div>
                     <p className="text-foreground font-medium">Change Password</p>
-                    <p className="text-muted-foreground text-sm">Update your wallet password</p>
+                    <p className="text-gray-400 text-sm">Update your wallet password</p>
                   </div>
                 </div>
                 <ChevronRight size={20} className="text-muted-foreground" />
@@ -121,14 +121,14 @@ export default function SettingsPage() {
         {/* Notifications Section */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <Bell size={20} className="text-primary" />
+            <Bell size={20} className="text-blue-500" />
             <h2 className="text-lg font-semibold text-foreground">Notifications</h2>
           </div>
           <div className="space-y-2">
-            <div className="bg-card border-border p-4 flex items-center justify-between">
+            <div className="bg-[#161b22] border border-gray-500  rounded-xl p-4 flex items-center flex-col justify-between gap-4">
               <div>
                 <p className="text-foreground font-medium">Transaction Alerts</p>
-                <p className="text-muted-foreground text-sm">Notify on transaction events</p>
+                <p className="text-gray-400 text-sm">Notify on transaction events</p>
               </div>
               <input
                 type="checkbox"
@@ -143,18 +143,18 @@ export default function SettingsPage() {
         {/* Display Settings */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <Lock size={20} className="text-primary" />
+            <Lock size={20} className="text-blue-500" />
             <h2 className="text-lg font-semibold text-foreground">Display</h2>
           </div>
           <div className="space-y-2">
-            <div className="bg-card border-border p-4">
+            <div className="bg-[#161b22] border border-gray-500  rounded-xl p-4">
               <div className="space-y-3">
                 <div>
                   <p className="text-foreground font-medium mb-2">Currency Display</p>
                   <select
                     value={settings.currencyDisplay}
                     onChange={(e) => updateSettings({ currencyDisplay: e.target.value as 'USD' | 'ETH' })}
-                    className="w-full bg-input border border-border rounded-lg p-2 text-foreground"
+                    className="w-full bg-input border border-gray-500 rounded-lg p-2 text-foreground"
                   >
                     <option value="USD">USD</option>
                     <option value="ETH">Crypto (ETH)</option>
@@ -165,7 +165,7 @@ export default function SettingsPage() {
                   <select
                     value={settings.lockTimeout}
                     onChange={(e) => updateSettings({ lockTimeout: parseInt(e.target.value) })}
-                    className="w-full bg-input border border-border rounded-lg p-2 text-foreground"
+                    className="w-full bg-input border border-gray-500 rounded-lg p-2 text-foreground"
                   >
                     <option value={1}>1 minute</option>
                     <option value={5}>5 minutes</option>
@@ -185,7 +185,7 @@ export default function SettingsPage() {
             {/* Logout */}
             <button
               onClick={handleLogout}
-              className="w-full bg-muted hover:bg-muted/80 text-foreground flex items-center justify-center gap-2"
+              className="w-full bg-gray-700 hover:bg-gray-600 p-2 rounded-lg text-foreground flex items-center justify-center gap-2"
             >
               <LogOut size={16} />
               Logout
@@ -195,17 +195,17 @@ export default function SettingsPage() {
             {!showResetConfirm ? (
               <button
                 onClick={() => setShowResetConfirm(true)}
-                className="w-full bg-destructive/10 hover:bg-destructive/20 text-destructive border border-destructive/30"
+                className="w-full bg-red-500/15 hover:bg-red-600 text-red-500 border border-red-600/30 flex items-center justify-center gap-2 p-2 rounded-lg"
               >
                 <RotateCcw size={16} className="mr-2" />
                 Reset Wallet
               </button>
             ) : (
-              <div className="bg-card border border-destructive/30 rounded-lg p-6">
-                <div className="mb-4 bg-destructive/10 border-destructive/30 p-3 rounded-lg">
-                  <div className="flex items-center gap-2">
-                    <AlertTriangle size={16} className="text-destructive" />
-                    <p className="text-destructive text-sm">
+              <div className="bg-[#161b22] border border-red-500/30 rounded-lg p-6">
+                <div className="mb-4 bg-red-500/15 border-red-500/30 p-3 rounded-lg">
+                  <div className="flex gap-2">
+                    <AlertTriangle size={46} className="" />
+                    <p className="text-red-500 text-sm">
                       This action cannot be undone. Make sure you have your recovery phrase saved before proceeding.
                     </p>
                   </div>
@@ -222,7 +222,7 @@ export default function SettingsPage() {
                   >
                     Cancel
                   </button>
-                  <button className="bg-destructive hover:bg-red-600 text-white px-4 py-2 rounded-lg" onClick={handleReset}>
+                  <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg" onClick={handleReset}>
                     Reset Wallet
                   </button>
                 </div>
@@ -232,12 +232,12 @@ export default function SettingsPage() {
         </div>
 
         {/* Version Info */}
-        <div className="text-center py-8 border-t border-border">
+        <div className="text-center py-8 border-t border-gray-500">
           <p className="text-muted-foreground text-sm">
             Ravo v1.0.0
           </p>
-          <p className="text-muted-foreground text-xs mt-1">
-            © 2024 Ravo. All rights reserved.
+          <p className="text-gray-400 text-xs mt-1">
+            © 2026 Ravo. All rights reserved.
           </p>
         </div>
       </div>
