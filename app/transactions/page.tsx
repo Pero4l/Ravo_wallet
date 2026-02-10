@@ -40,7 +40,7 @@ export default function TransactionsPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-card border-b border-border sticky top-0 z-10">
+      <header className="bg-[#161b22] border-b border-gray-500 sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center gap-4">
           <Link href="/dashboard">
             <button className="hover:bg-input text-foreground">
@@ -58,32 +58,32 @@ export default function TransactionsPage() {
 
       <div className="max-w-4xl mx-auto px-4 py-8">
         {transactionsLoading ? (
-          <div className="bg-card border-border p-8 text-center text-muted-foreground">
+          <div className="bg-[#161b22] border border-gray-500 p-8 text-center text-muted-foreground">
             Loading transactions...
           </div>
         ) : transactions.length === 0 ? (
-          <div className="bg-card border-border p-8 text-center text-muted-foreground">
+          <div className="bg-[#161b22] border border-gray-500 p-8 text-center text-muted-foreground">
             No transactions found
           </div>
         ) : (
           <div className="space-y-2">
             {transactions.map((tx) => (
               <Link key={tx.hash} href={`/transactions/${tx.hash}`}>
-                <div className="bg-card border-border p-4 hover:border-primary transition cursor-pointer">
+                <div className="bg-[#161b22] border border-gray-500 rounded-lg p-4 hover:border-primary transition cursor-pointer">
                   <div className="flex items-center justify-between">
                     {/* Left */}
                     <div className="flex items-center gap-4">
                       <div
                         className={`w-12 h-12 rounded-full flex items-center justify-center ${
                           tx.type === 'received'
-                            ? 'bg-success/20 text-success'
-                            : 'bg-primary/20 text-primary'
+                            ? ' bg-blue-500/20 text-blue-500'
+                            : 'bg-green-500/20 text-green-500'
                         }`}
                       >
                         {tx.type === 'received' ? (
-                          <TrendingDown size={20} />
+                          <TrendingDown className='text-green-500' size={20} />
                         ) : (
-                          <TrendingUp size={20} />
+                          <TrendingUp className='text-blue-500' size={20} />
                         )}
                       </div>
 
@@ -93,13 +93,13 @@ export default function TransactionsPage() {
                             {tx.type === 'received' ? 'Received' : 'Sent'}
                           </p>
                           {tx.status === 'success' && (
-                            <CheckCircle2 size={14} className="text-success" />
+                            <CheckCircle2 size={14} className="text-green-500" />
                           )}
                           {tx.status === 'failed' && (
-                            <XCircle size={14} className="text-destructive" />
+                            <XCircle size={14} className="text-red-500" />
                           )}
                           {tx.status === 'pending' && (
-                            <Clock size={14} className="text-muted-foreground animate-spin" />
+                            <Clock size={14} className="text-yellow-500 animate-spin" />
                           )}
                         </div>
 

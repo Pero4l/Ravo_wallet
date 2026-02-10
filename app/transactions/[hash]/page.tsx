@@ -96,7 +96,7 @@ export default function TransactionDetailPage({
   return (
     <main className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-card border-b border-border sticky top-0 z-10">
+      <header className="bg-[#161b22] border-b border-gray-500 sticky top-0 z-10">
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-4">
           <Link href="/transactions">
             <button className="hover:bg-input text-foreground">
@@ -257,21 +257,25 @@ export default function TransactionDetailPage({
           </div>
         </div>
 
+       
+
         {/* View on Explorer */}
         <Link
           href={`${currentNetwork.explorerUrl}/tx/${transaction.hash}`}
           target="_blank"
           className="block"
         >
-          <button className="w-full bg-primary hover:bg-blue-600 text-primary-foreground flex items-center justify-center gap-2">
+          <button className="w-full bg-primary hover:bg-blue-600 text-green-600 flex items-center justify-center gap-2">
             View on {currentNetwork.name} Explorer
             <ExternalLink size={16} />
           </button>
         </Link>
 
+         <div className="border-t border-gray-600 pt-4 mt-"></div>
+
         {/* Back Button */}
         <Link href="/transactions" className="block">
-          <button className="w-full border-border ">
+          <button className="w-full border border-gray-500 hover:bg-gray-500/20 p-2 rounded-lg">
             Back to Transactions
           </button>
         </Link>

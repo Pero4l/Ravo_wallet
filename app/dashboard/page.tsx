@@ -21,14 +21,14 @@ export default function DashboardPage() {
 
   const [copied, setCopied] = useState(false)
 
-  // ✅ ALWAYS call hooks first
+
   useEffect(() => {
     if (!context?.isConnected) {
       router.push('/')
     }
   }, [context?.isConnected, router])
 
-  // ✅ AFTER hooks, it's safe to return early
+
   if (!context) {
     return <div className='text-center justify-center'>Loading...</div>
   }
@@ -73,7 +73,7 @@ export default function DashboardPage() {
         {/* Network Selector */}
         <div className="flex gap-2">
           <select
-          className="border border-gray-500 p-2 text-white px-3 py-1 rounded-lg text-sm"
+          className="border border-gray-500 p-2 text-white px-3 rounded-lg text-sm"
             value={currentNetwork.id}
             onChange={(e) => changeNetwork(e.target.value)}
           >
@@ -122,14 +122,14 @@ export default function DashboardPage() {
             {/* Action Buttons */}
             <div className="grid grid-cols-2 gap-3 pt-4">
               <Link href="/send">
-                <button className="w-full bg-blue-800 hover:bg-blue-500 text-primary-foreground flex flex-col items-center justify-center gap-3 p-3 rounded-lg">
+                <button className="w-full bg-blue-900 hover:bg-blue-500 text-primary-foreground flex flex-col items-center justify-center gap-3 p-3 rounded-lg">
                   <Send size={20} className="mr-2" />
                   Send
                 </button>
               </Link>
               <Link href="/receive">
                 <button
-                  className="w-full bg-blue-800 hover:bg-blue-500 text-primary-foreground flex flex-col items-center justify-center gap-3 p-3 rounded-lg"
+                  className="w-full bg-blue-900 hover:bg-blue-500 text-primary-foreground flex flex-col items-center justify-center gap-3 p-3 rounded-lg"
                 >
                   <ArrowDownLeft size={20} className="mr-2" />
                   Receive
@@ -186,7 +186,7 @@ export default function DashboardPage() {
             <div className="space-y-2">
               {recentTransactions.map((tx) => (
                 <Link key={tx.hash} href={`/transactions/${tx.hash}`}>
-                  <div className="bg-[#161b22] border border-gray-500 p-4 hover:border-primary transition cursor-pointer">
+                  <div className="bg-[#161b22] border border-gray-500 rounded-lg p-4 hover:border-primary transition cursor-pointer">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div
@@ -197,9 +197,9 @@ export default function DashboardPage() {
                           }`}
                         >
                           {tx.type === 'received' ? (
-                            <TrendingDown size={20} />
+                            <TrendingDown className='text-green-500' size={20} />
                           ) : (
-                            <TrendingUp size={20} />
+                            <TrendingUp className='text-blue-500' size={20} />
                           )}
                         </div>
                         <div>

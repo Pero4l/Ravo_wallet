@@ -1,48 +1,65 @@
-import Link from "next/link";
+"use client";
+
+import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import logo from "@/public/logo.png";
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.push("/landing"); 
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [router]);
+
   return (
-    <div className="flex min-h-screen flex-col items-center lg:justify-center py-2">
-      {/* Logo */}
+    <div className="flex min-h-screen items-center justify-center bg-background overflow-y-hidden -mt-20">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="text-center"
+      >
 
-      <div className="w-full lg:max-w-md">
+         <motion.img
+        src={logo.src}
+        alt="Ravo Wallet"
+        className="w-48 h-48 mx-auto mb-4"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: "spring", stiffness: 120 }}
+      />
+
+
+
         {/* Logo */}
-        <div className="text-center mb-20 lg:mb-2 mt-32 lg:mt-0">
-          <h1 className="text-5xl font-bold text-blue-600">Ravo</h1>
-          <p className="text-muted-foreground text-lg">Your crypto. Your control.</p>
-        </div>
-        </div>
+        <motion.h1
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="text-4xl font-bold text-blue-600 mb-3"
+        >
+          Ravo Wallet
+        </motion.h1>
 
-         {/* Card Container */}
-        <div className="bg-[#161b22] border border-gray-600 rounded-lg p-10 shadow-lg mx-4 mt-1">
-          <p className="text-center text-foreground mb-8 ">
-            Get started with your secure Web3 wallet in seconds.
-          </p>
+        
 
-          {/* Buttons */}
-          <div className="space-y-5 mb-8">
-            <Link href="/create-wallet" className="block">
-              <button className="w-full bg-blue-600 hover:bg-blue-700 p-2 lg:p-3 rounded-xl text-primary-foreground">
-                Create New Wallet
-              </button>
-            </Link>
-            <Link href="/import-wallet" className="block">
-              <button
-                className="w-full border-border hover:text-blue-700 text-foreground hover:bg-card bg-transparent"
-              >
-                Import Existing Wallet
-              </button>
-            </Link>
-          </div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="text-muted-foreground text-lg"
+        >
+          Your crypto. Your control.
+        </motion.p>
 
-          {/* Security Disclaimer */}
-          <div className="pt-4 border-t border-gray-500">
-            <p className="text-xs text-muted-foreground text-center leading-relaxed">
-              Your private keys are stored securely on your device. Ravo never stores or transmits your keys.
-            </p>
-          </div>
-        </div>
+       
 
+      </motion.div>
     </div>
   );
 }
