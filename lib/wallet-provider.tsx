@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { WalletContext, WalletContextType } from "./wallet-context";
 import { ethers } from "ethers";
 import { Network, NETWORKS, DEFAULT_NETWORK } from "@/lib/networks";
+import type { WalletTransaction } from "@/lib/types";
 
 export function WalletProvider({ children }: { children: React.ReactNode }) {
   const [address, setAddress] = useState<string | null>(null);
@@ -119,62 +120,52 @@ const refreshBalance = useCallback(async () => {
 
 
   const refreshTransactions = useCallback(async () => {
-    if (!address) return;
-    try {
-      setTransactionsLoading(true);
-      // Use Alchemy API to get transaction history
-      const rpcUrl = currentNetwork.rpcUrl;
-      const response = await fetch(rpcUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          jsonrpc: "2.0",
-          method: "alchemy_getAssetTransfers",
-          params: [
-            {
-              fromAddress: address,
-              category: ["external", "internal", "erc20"],
-            },
-          ],
-          id: 1,
-        }),
-      });
+  if (!address) return;
 
-      const data = await response.json() as { result?: { transfers: Record<string, unknown>[] } };
-      const transfers = data.result?.transfers || [];
-      
+  try {
+    setTransactionsLoading(true);
 
-      // Transform into Transaction format
-      const formattedTransactions: WalletContextType["transactions"] =
-        transfers.map((transfer: Record<string, unknown>) => ({
-          hash: String(transfer.hash || ""),
-          from: String(transfer.from || ""),
-          to: String(transfer.to || ""),
-          value: transfer.rawContract
-            ? (
-                Number(transfer.value || 0) /
-                Math.pow(10, Number((transfer.rawContract as Record<string, unknown>).decimal || 18))
-              ).toString()
-            : String(transfer.value || "0"),
-          status: "success" as const,
-          type:
-            String(transfer.from || "").toLowerCase() === address.toLowerCase()
-              ? "sent"
-              : "received",
-          timestamp: transfer.blockNum
-            ? parseInt(String(transfer.blockNum)) * 12 // Approximate timestamp (12s per block)
-            : undefined,
-        }));
+    const res = await fetch("/api/transactions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        address,
+        rpcUrl: currentNetwork.rpcUrl,
+      }),
+    });
 
-      setTransactions(formattedTransactions);
-    } catch (error) {
-      console.error("Error fetching transactions:", error);
-      // Silently fail - just show no transactions
-      setTransactions([]);
-    } finally {
-      setTransactionsLoading(false);
-    }
-  }, [address, currentNetwork]);
+    const data = await res.json();
+    const transfers = data.result?.transfers || [];
+
+    const formatted: WalletContextType["transactions"] = transfers.map(
+      (tx: WalletTransaction) => ({
+        hash: tx.hash,
+        from: tx.from,
+        to: tx.to,
+        value: tx.value || "0",
+        gasUsed: undefined,
+        gasPrice: undefined,
+       blockNumber: tx.blockNum ? parseInt(tx.blockNum, 16) : null,
+        timestamp: tx.metadata?.blockTimestamp
+          ? Math.floor(new Date(tx.metadata.blockTimestamp).getTime() / 1000)
+          : undefined,
+        status: "success",
+        type:
+          tx.from?.toLowerCase() === address.toLowerCase()
+            ? "sent"
+            : "received",
+      }),
+    );
+
+    setTransactions(formatted);
+  } catch (error) {
+    console.error("Error fetching transactions:", error);
+    setTransactions([]);
+  } finally {
+    setTransactionsLoading(false);
+  }
+}, [address, currentNetwork]);
+
 
   // Auto-refresh balance every 30 seconds when wallet is connected
   useEffect(() => {

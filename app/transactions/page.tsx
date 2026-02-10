@@ -36,7 +36,7 @@ export default function TransactionsPage() {
     currentNetwork,
   } = context
 
-  console.log("Transactions:", transactions) // Debugging log   
+  // console.log("Transactions:", transactions) // Debugging log   
   return (
     <main className="min-h-screen bg-background">
       {/* Header */}
@@ -69,7 +69,7 @@ export default function TransactionsPage() {
           <div className="space-y-2">
             {transactions.map((tx) => (
               <Link key={tx.hash} href={`/transactions/${tx.hash}`}>
-                <div className="bg-[#161b22] border border-gray-500 rounded-lg p-4 hover:border-primary transition cursor-pointer">
+                <div className="bg-[#161b22] border border-gray-500 rounded-lg p-4 hover:border-primary transition cursor-pointer mb-3">
                   <div className="flex items-center justify-between">
                     {/* Left */}
                     <div className="flex items-center gap-4">

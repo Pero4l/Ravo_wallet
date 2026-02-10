@@ -186,7 +186,7 @@ export default function DashboardPage() {
             <div className="space-y-2">
               {recentTransactions.map((tx) => (
                 <Link key={tx.hash} href={`/transactions/${tx.hash}`}>
-                  <div className="bg-[#161b22] border border-gray-500 rounded-lg p-4 hover:border-primary transition cursor-pointer">
+                  <div className="bg-[#161b22] border border-gray-500 rounded-lg p-4 hover:border-primary transition cursor-pointer mb-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div

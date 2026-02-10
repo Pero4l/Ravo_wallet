@@ -2,8 +2,7 @@
 
 import { useState, useContext } from "react";
 import Link from "next/link";
-import Router from "next/router";
-
+import { useRouter } from "next/navigation"; // ✅ fixed
 import { ArrowLeft, ChevronDown, AlertCircle } from "lucide-react";
 import { WalletContext } from "@/lib/wallet-context";
 import { ethers } from "ethers";
@@ -22,11 +21,9 @@ export default function SendPage() {
   );
   const [sending, setSending] = useState(false);
 
-  const router = Router;
+  const router = useRouter(); // ✅ use the client router
 
-  if (!context) {
-    return null;
-  }
+  if (!context) return null;
 
   const { balance, signer, refreshBalance, refreshTransactions } = context;
 
@@ -38,20 +35,12 @@ export default function SendPage() {
 
   const validate = () => {
     const newErrors: typeof errors = {};
+    if (!recipient) newErrors.recipient = "Recipient address is required";
+    else if (!ethers.isAddress(recipient)) newErrors.recipient = "Invalid Ethereum address";
 
-    if (!recipient) {
-      newErrors.recipient = "Recipient address is required";
-    } else if (!ethers.isAddress(recipient)) {
-      newErrors.recipient = "Invalid Ethereum address";
-    }
-
-    if (!amount) {
-      newErrors.amount = "Amount is required";
-    } else if (parseFloat(amount) <= 0) {
-      newErrors.amount = "Amount must be greater than 0";
-    } else if (parseFloat(amount) > parseFloat(balance)) {
-      newErrors.amount = "Insufficient balance";
-    }
+    if (!amount) newErrors.amount = "Amount is required";
+    else if (parseFloat(amount) <= 0) newErrors.amount = "Amount must be greater than 0";
+    else if (parseFloat(amount) > parseFloat(balance)) newErrors.amount = "Insufficient balance";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -66,20 +55,14 @@ export default function SendPage() {
     try {
       setSending(true);
 
-      // Get provider from signer
       const provider = signer.provider;
-      if (!provider) {
-        throw new Error("Provider not available");
-      }
+      if (!provider) throw new Error("Provider not available");
 
-      // Get fee data from network (EIP-1559)
       const feeData = await provider.getFeeData();
 
       const tx = await signer.sendTransaction({
         to: recipient,
         value: ethers.parseEther(amount),
-
-        // ✅ EIP-1559 (this is the key fix)
         maxFeePerGas: feeData.maxFeePerGas!,
         maxPriorityFeePerGas: feeData.maxPriorityFeePerGas!,
       });
@@ -93,16 +76,16 @@ export default function SendPage() {
       setAmount("");
       alert("Transaction sent successfully!");
 
-    
+      // ✅ Navigate after sending
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 2000);
+
     } catch (err) {
       console.error("Transaction failed:", err);
       alert("Transaction failed. Check console for details.");
     } finally {
       setSending(false);
-      
-        setTimeout(() => {
-        router.push("/dashboard");
-      }, 2000);
     }
   };
 
@@ -111,6 +94,7 @@ export default function SendPage() {
     amount.length > 0 &&
     Object.keys(errors).length === 0;
 
+    
   return (
     <main className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-md">
