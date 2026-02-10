@@ -29,7 +29,7 @@ export default function DashboardPage() {
 
   // ✅ AFTER hooks, it's safe to return early
   if (!context) {
-    return <div>Loading...</div>
+    return <div className='text-center justify-center'>Loading...</div>
   }
 
   const {

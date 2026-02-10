@@ -20,22 +20,23 @@ export function WalletHeader({
       <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* App / Wallet Name */}
         <div>
-          <h1 className="text-lg font-bold text-foreground">Ravo Wallet</h1>
-          <p className="text-xs text-muted-foreground">
+          <h1 className="text-3xl text-blue-500 font-bold ">Ravo</h1>
+          {/* <p className="text-xs text-muted-foreground">
             Secure Web3 Wallet
-          </p>
+          </p> */}
         </div>
 
         {/* Wallet Info */}
         <div className="flex items-center gap-4">
           {/* Network Badge */}
           <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-input text-sm">
-            <span>{network}</span>
-            <Dot className='text-green-500' size={30} />
+            {/* <span>{network}</span> */}
+            
           </div>
 
           {/* Address */}
-          <div className="px-3 py-1 rounded-full bg-primary/10 text-primary font-mono text-sm">
+          <div className="px-3 py-1 rounded-full bg-primary/10 text-primary font-mono text-sm flex items-center gap-1">
+          <Dot className='text-green-500' size={30} />
             {shortenedAddress}
           </div>
         </div>
