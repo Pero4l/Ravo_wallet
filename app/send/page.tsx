@@ -130,7 +130,7 @@ export default function SendPage() {
         </div>
 
         {/* Card */}
-        <div className="bg-card border border-border rounded-lg p-8 shadow-lg">
+        <div className="bg-[#161b22] border border-gray-500 rounded-lg p-8 shadow-lg">
           {/* Recipient */}
           <div className="mb-6">
             <label className="text-sm font-medium text-foreground mb-2 block">
@@ -140,10 +140,10 @@ export default function SendPage() {
               placeholder="0x..."
               value={recipient}
               onChange={(e) => setRecipient(e.target.value)}
-              className={`bg-input border-border text-foreground ${errors.recipient ? "border-destructive" : ""}`}
+              className={`bg-input border border-gray-500 w-full p-2 px-3 rounded-lg text-foreground ${errors.recipient ? "border-destructive" : ""}`}
             />
             {errors.recipient && (
-              <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+              <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
                 <AlertCircle size={14} />
                 {errors.recipient}
               </p>
@@ -161,10 +161,10 @@ export default function SendPage() {
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               step="0.001"
-              className={`bg-input border-border text-foreground ${errors.amount ? "border-destructive" : ""}`}
+              className={`bg-input border border-gray-500 w-full p-2 px-3 rounded-lg text-foreground ${errors.amount ? "border-destructive" : ""}`}
             />
             {errors.amount && (
-              <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+              <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
                 <AlertCircle size={14} />
                 {errors.amount}
               </p>
@@ -178,7 +178,7 @@ export default function SendPage() {
           <div className="mb-6">
             <button
               onClick={() => setShowAdvanced(!showAdvanced)}
-              className="w-full flex items-center justify-between text-sm font-medium text-primary"
+              className="w-full flex items-center justify-between text-sm font-medium text-blue-500 hover:text-blue-700 transition"
             >
               Advanced Options
               <ChevronDown
@@ -208,7 +208,7 @@ export default function SendPage() {
 
           {/* Send */}
           <button
-            className="w-full bg-primary hover:bg-blue-600 text-primary-foreground mb-3"
+            className="w-full bg-blue-600/50 hover:bg-blue-700 p-2 rounded-lg text-primary-foreground mb-3"
             disabled={!isValid || sending}
             onClick={handleSend}
           >
@@ -216,7 +216,7 @@ export default function SendPage() {
           </button>
 
           <Link href="/dashboard">
-            <button className="w-full border-border bg-transparent">
+            <button className="w-full border p-2 rounded-lg border-gray-500 bg-transparent">
               Cancel
             </button>
           </Link>
