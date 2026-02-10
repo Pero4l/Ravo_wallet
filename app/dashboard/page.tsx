@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
   Send,
+  ArrowDownLeft,
   TrendingUp,
   TrendingDown,
   Copy,
@@ -104,12 +105,12 @@ export default function DashboardPage() {
         <div className="bg-[#161b22] from-card to-card/50 border border-gray-500 rounded-xl p-8">
           <div className="space-y-4">
             <div>
-              <p className="text-muted-foreground text-sm mb-2">Total Balance</p>
+              <p className="text-gray-400 text-sm mb-2">Total Balance</p>
               <div className="flex items-baseline gap-2">
-                <span className="text-4xl font-bold text-primary">
+                <span className="text-4xl font-bold text-blue-500">
                   {balanceLoading ? '...' : parseFloat(balance || '0').toFixed(4)}
                 </span>
-                <span className="text-2xl text-muted-foreground">
+                <span className="text-2xl text-gray-400">
                   {currentNetwork.currency || 'ETH'}
                 </span>
               </div>
@@ -121,26 +122,26 @@ export default function DashboardPage() {
             {/* Action Buttons */}
             <div className="grid grid-cols-2 gap-3 pt-4">
               <Link href="/send">
-                <button className="w-full bg-primary hover:bg-blue-600 text-primary-foreground">
-                  <Send size={16} className="mr-2" />
+                <button className="w-full bg-blue-800 hover:bg-blue-500 text-primary-foreground flex flex-col items-center justify-center gap-3 p-3 rounded-lg">
+                  <Send size={20} className="mr-2" />
                   Send
                 </button>
               </Link>
               <Link href="/receive">
                 <button
-                  
-                  className="w-full border-border text-foreground hover:bg-card bg-transparent"
+                  className="w-full bg-blue-800 hover:bg-blue-500 text-primary-foreground flex flex-col items-center justify-center gap-3 p-3 rounded-lg"
                 >
+                  <ArrowDownLeft size={20} className="mr-2" />
                   Receive
                 </button>
               </Link>
             </div>
 
             {/* Address Info */}
-            <div className="border-t border-border pt-4 mt-4">
+            <div className="border-t border-gray-600 pt-4 mt-4">
               <div className="flex items-center justify-between">
                 <div className="text-sm">
-                  <p className="text-muted-foreground mb-1">Wallet Address</p>
+                  <p className="text-gray-400 mb-1">Wallet Address</p>
                   <p className="font-mono text-sm">{shortenedAddress}</p>
                 </div>
                 <button
@@ -148,11 +149,11 @@ export default function DashboardPage() {
                   className="p-2 hover:bg-card rounded-lg transition"
                   title="Copy address"
                 >
-                  <Copy size={18} className="text-accent" />
+                  <Copy size={18} className="text-green-500" />
                 </button>
               </div>
               {copied && (
-                <p className="text-xs text-accent mt-2">Copied!</p>
+                <p className="text-xs text-green-600 mt-2">Copied!</p>
               )}
             </div>
           </div>
@@ -163,20 +164,20 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold">Recent Transactions</h2>
             <Link href="/transactions">
-              <button className="text-accent hover:text-accent/80">
+              <button className="text-green-500 hover:text-green-700">
                 View All
               </button>
             </Link>
           </div>
 
           {transactionsLoading ? (
-            <div className="bg-card border-border p-4">
+            <div className="bg-[#161b22] border border-gray-500 rounded-xl p-4">
               <p className="text-muted-foreground text-center py-8">
                 Loading transactions...
               </p>
             </div>
           ) : recentTransactions.length === 0 ? (
-            <div className="bg-card border-border p-4">
+            <div className="bg-[#161b22] border border-gray-500 rounded-xl p-4">
               <p className="text-muted-foreground text-center py-8">
                 No transactions yet
               </p>
